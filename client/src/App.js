@@ -62,7 +62,12 @@ console.log(event.target.name)
 //send to DB (mySQL)
 //response back to front end
 //------------------------------
-
+incrementMe = () => {
+  let newCount = this.state.count + 1
+  this.setState({
+    count: newCount
+  })
+}
 
   render() {
     return (
@@ -72,23 +77,19 @@ console.log(event.target.name)
           <TableHead>
             <TableRow>
               {/* <TableCell>Dessert (100g serving)</TableCell> */}
-              <TableCell align="right">Rank</TableCell>
-              <TableCell align="right">Goal</TableCell>
-              <TableCell align="right">Likes</TableCell>
+              <TableCell>Rank</TableCell>
+              <TableCell>Goal</TableCell>
+              <TableCell>Likes</TableCell>
               {/* <TableCell align="right">Protein (g)</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map(n => (
               <TableRow key={n.goalName}>
-                <TableCell key={n.id} component="th" scope="row">
-                  {n.name}
-                </TableCell>
-                <TableCell key={n.id} align="right">{n.goalRank}</TableCell>
-                <TableCell key={n.id} align="right">{n.goalName}</TableCell>
-                <TableCell key={n.id} align="right">{n.goalLike}</TableCell>
-                {/* <TableCell align="right">{n.protein}</TableCell> */}
-                <TableCell key={n.id} align="right"><button name={n.goalName} onClick={this.handleLike}>Like</button></TableCell>
+                <TableCell key={n.id}>{n.goalRank}</TableCell>
+                <TableCell key={n.id}>{n.goalName}</TableCell>
+                <TableCell key={n.id}>{n.goalLike}</TableCell>
+                <TableCell key={n.id}><button name={n.goalLike} onClick={this.incrementMe}>Like {this.newCount}</button></TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -97,6 +98,7 @@ console.log(event.target.name)
     )
   }
 }
+
 
 GoalTable.propTypes = {
   classes: PropTypes.object.isRequired,
