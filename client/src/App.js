@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Form from '../src/components/Form/index.js';
+import { UID } from 'react-uid';
 
 const styles = {
   root: {
@@ -18,6 +19,8 @@ const styles = {
     minWidth: 700,
   },
 };
+
+
 
 
 
@@ -33,6 +36,7 @@ function tableComponent(goalRank, goalName, goalLike, likeBtn) {
 //   id += 1;
 //   return { id, name, calories, fat, carbs, protein };
 // }
+// let goalLike = 0;
 
 const data = [
   tableComponent(1, 'Lose Weight', 10),
@@ -46,52 +50,75 @@ class GoalTable extends React.Component {
   // const { classes } = props;
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      goalLike: 0,
+      show: true
+    }
+  }
+
+  IncrementItem = () => {
+    this.setState({ goalLike: this.state.goalLike += 1 });
+    console.log(this.state.goalLike)
+  }
+  ToggleClick = () => {
+    this.setState({ show: !this.state.show });
   }
 
   //this function accepts parameter events
-handleLike (event) {
-event.preventDefault()
-console.log(event.target.name)
-}
+  handleLike(event) {
+    event.preventDefault()
+    console.log(event)
+  }
 
-//------------------------------
-//set up AXIOS
-//set up Routes
-//set up sequelize
-//send to DB (mySQL)
-//response back to front end
-//------------------------------
+  //------------------------------
+  //set up AXIOS
+  //set up Routes
+  //set up sequelize
+  //send to DB (mySQL)
+  //response back to front end
+  //------------------------------
 
 
   render() {
     return (
       <Paper>
         <Form />
+        <UID>
+          {id => (
+            <Fragment>
+              <input id={id} />
+              <label htmlFor={id} />
+            </Fragment>
+          )}
+
+        </UID>
         <Table>
           <TableHead>
             <TableRow>
-              {/* <TableCell>Dessert (100g serving)</TableCell> */}
-              <TableCell align="right">Rank</TableCell>
-              <TableCell align="right">Goal</TableCell>
-              <TableCell align="right">Likes</TableCell>
-              {/* <TableCell align="right">Protein (g)</TableCell> */}
+              <TableCell align="center">Rank</TableCell>
+              <TableCell align="center">Goal</TableCell>
+              <TableCell align="center">Likes</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map(n => (
               <TableRow key={n.goalName}>
-                <TableCell key={n.id} component="th" scope="row">
+                {/* <TableCell key={n.id} component="th" scope="row">
                   {n.name}
+                </TableCell> */}
+                <TableCell key={n.id} align="center">{n.goalRank}</TableCell>
+                <TableCell key={n.id} align="center">{n.goalName}</TableCell>
+                <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
+                <TableCell key={n.id} align="center">
+                  <button name={n.goalLike} onClick={this.IncrementItem}>Like</button>
+
                 </TableCell>
-                <TableCell key={n.id} align="right">{n.goalRank}</TableCell>
-                <TableCell key={n.id} align="right">{n.goalName}</TableCell>
-                <TableCell key={n.id} align="right">{n.goalLike}</TableCell>
-                {/* <TableCell align="right">{n.protein}</TableCell> */}
-                <TableCell key={n.id} align="right"><button name={n.goalName} onClick={this.handleLike}>Like</button></TableCell>
+
               </TableRow>
+
             ))}
           </TableBody>
+
         </Table>
       </Paper>
     )
