@@ -29,15 +29,6 @@ function tableComponent(goalRank, goalName, goalLike, likeBtn) {
   return { goalRank, goalName, goalLike, likeBtn };
 }
 
-// {goalRank : 1, goalName : goalName, goalLike : 10}
-
-// let id = 0;
-// function createData(name, calories, fat, carbs, protein) {
-//   id += 1;
-//   return { id, name, calories, fat, carbs, protein };
-// }
-// let goalLike = 0;
-
 const data = [
   tableComponent(1, 'Lose Weight', 10),
   tableComponent(2, 'Get a Job', 8),
@@ -47,7 +38,6 @@ const data = [
 ];
 
 class GoalTable extends React.Component {
-  // const { classes } = props;
   constructor(props) {
     super(props)
     this.state = {
@@ -103,16 +93,12 @@ class GoalTable extends React.Component {
           <TableBody>
             {data.map(n => (
               <TableRow key={n.goalName}>
-                {/* <TableCell key={n.id} component="th" scope="row">
-                  {n.name}
-                </TableCell> */}
                 <TableCell key={n.id} align="center">{n.goalRank}</TableCell>
                 <TableCell key={n.id} align="center">{n.goalName}</TableCell>
-                <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
+                <TableCell key={n.id} align="center">{this.state.goalLike}</TableCell>
                 <TableCell key={n.id} align="center">
                   <button name={n.goalLike} onClick={this.IncrementItem}>Like</button>
-
-                </TableCell>
+               </TableCell>
 
               </TableRow>
 
@@ -124,6 +110,7 @@ class GoalTable extends React.Component {
     )
   }
 }
+
 
 GoalTable.propTypes = {
   classes: PropTypes.object.isRequired,
