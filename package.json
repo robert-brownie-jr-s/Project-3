@@ -25,6 +25,7 @@
     "express": "^4.16.3",
     "fragment": "^0.3.0",
     "if-env": "^1.0.4",
+    "material-components-web": "^2.2.0",
     "mongoose": "^5.3.16",
     "react-uid": "^2.2.0"
   }

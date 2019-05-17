@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Form from '../src/components/Form/index.js';
 import { UID } from 'react-uid';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 const styles = {
   root: {
@@ -44,6 +45,7 @@ const data = [
   tableComponent(3, 'Visit Korea', 6),
   tableComponent(4, 'Win life', 4),
   tableComponent(5, 'Quit Job', 2),
+   
 ];
 
 class GoalTable extends React.Component {
@@ -60,9 +62,7 @@ class GoalTable extends React.Component {
     this.setState({ goalLike: this.state.goalLike += 1 });
     console.log(this.state.goalLike)
   }
-  ToggleClick = () => {
-    this.setState({ show: !this.state.show });
-  }
+  
 
   //this function accepts parameter events
   handleLike(event) {
@@ -101,14 +101,19 @@ class GoalTable extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
+
             {data.map(n => (
               <TableRow key={n.goalName}>
                 {/* <TableCell key={n.id} component="th" scope="row">
                   {n.name}
                 </TableCell> */}
+
                 <TableCell key={n.id} align="center">{n.goalRank}</TableCell>
+
                 <TableCell key={n.id} align="center">{n.goalName}</TableCell>
-                <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
+                {/* <TableSortLabel> */}
+                  <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
+                {/* </TableSortLabel> */}
                 <TableCell key={n.id} align="center">
                   <button name={n.goalLike} onClick={this.IncrementItem}>Like</button>
 
@@ -117,6 +122,7 @@ class GoalTable extends React.Component {
               </TableRow>
 
             ))}
+
           </TableBody>
 
         </Table>
