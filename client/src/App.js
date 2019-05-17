@@ -31,35 +31,42 @@ function tableComponent(goalRank, goalName, goalLike, likeBtn) {
 }
 
 const data = [
-  tableComponent(1, 'Lose Weight', 10),
-  tableComponent(2, 'Get a Job', 8),
-  tableComponent(3, 'Visit Korea', 6),
-  tableComponent(4, 'Win life', 4),
-  tableComponent(5, 'Quit Job', 2),
+  tableComponent(1, 'Lose Weight', 0),
+  tableComponent(2, 'Get a Job', 0),
+  tableComponent(3, 'Visit Korea', 0),
+  tableComponent(4, 'Win life', 0),
+  tableComponent(5, 'Quit Job', 0),
 ];
 
 class GoalTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      goalLike: 0,
+      data,
       show: true
+
     }
   }
 
-  IncrementItem = () => {
-    this.setState({ goalLike: this.state.goalLike += 1 });
-    console.log(this.state.goalLike)
+  IncrementItem = index => () => {
+    const data = this.state.data.map((item, i) => {
+      if (i !== index) {
+        return item;
+      }
+      return {
+        ...item,
+        goalLike: item.goalLike + 1
+      }
+    }); 
+    this.setState({ data });
+    console.log(data)
   }
   ToggleClick = () => {
     this.setState({ show: !this.state.show });
   }
 
-  //this function accepts parameter events
-  handleLike(event) {
-    event.preventDefault()
-    console.log(event)
-  }
+
+
 
   //------------------------------
   //set up AXIOS
@@ -84,13 +91,13 @@ class GoalTable extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map(n => (
+            {this.state.data.map((n, index) => (
               <TableRow key={n.goalName}>
                 <TableCell key={n.id} align="center">{n.goalRank}</TableCell>
                 <TableCell key={n.id} align="center">{n.goalName}</TableCell>
-                <TableCell key={n.id} align="center">{this.state.goalLike}</TableCell>
+                <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
                 <TableCell key={n.id} align="center">
-                  <button name={n.goalLike} onClick={this.IncrementItem}>Like</button>
+                  <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
                </TableCell>
 
               </TableRow>
