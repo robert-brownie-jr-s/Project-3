@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Form from '../src/components/Form/index.js';
+import { UID } from 'react-uid';
 
 const styles = {
   root: {
@@ -21,18 +22,12 @@ const styles = {
 
 
 
+
+
 // Goal Rank Table component
 function tableComponent(goalRank, goalName, goalLike, likeBtn) {
   return { goalRank, goalName, goalLike, likeBtn };
 }
-
-// {goalRank : 1, goalName : goalName, goalLike : 10}
-
-// let id = 0;
-// function createData(name, calories, fat, carbs, protein) {
-//   id += 1;
-//   return { id, name, calories, fat, carbs, protein };
-// }
 
 const data = [
   tableComponent(1, 'Lose Weight', 10),
@@ -43,56 +38,73 @@ const data = [
 ];
 
 class GoalTable extends React.Component {
-  // const { classes } = props;
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      goalLike: 0,
+      show: true
+    }
+  }
+
+  IncrementItem = () => {
+    this.setState({ goalLike: this.state.goalLike += 1 });
+    console.log(this.state.goalLike)
+  }
+  ToggleClick = () => {
+    this.setState({ show: !this.state.show });
   }
 
   //this function accepts parameter events
-handleLike (event) {
-event.preventDefault()
-console.log(event.target.name)
-}
+  handleLike(event) {
+    event.preventDefault()
+    console.log(event)
+  }
 
-//------------------------------
-//set up AXIOS
-//set up Routes
-//set up sequelize
-//send to DB (mySQL)
-//response back to front end
-//------------------------------
-incrementMe = () => {
-  let newCount = this.state.count + 1
-  this.setState({
-    count: newCount
-  })
-}
+  //------------------------------
+  //set up AXIOS
+  //set up Routes
+  //set up sequelize
+  //send to DB (mySQL)
+  //response back to front end
+  //------------------------------
+
 
   render() {
     return (
       <Paper>
         <Form />
+        <UID>
+          {id => (
+            <Fragment>
+              <input id={id} />
+              <label htmlFor={id} />
+            </Fragment>
+          )}
+
+        </UID>
         <Table>
           <TableHead>
             <TableRow>
-              {/* <TableCell>Dessert (100g serving)</TableCell> */}
-              <TableCell>Rank</TableCell>
-              <TableCell>Goal</TableCell>
-              <TableCell>Likes</TableCell>
-              {/* <TableCell align="right">Protein (g)</TableCell> */}
+              <TableCell align="center">Rank</TableCell>
+              <TableCell align="center">Goal</TableCell>
+              <TableCell align="center">Likes</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map(n => (
               <TableRow key={n.goalName}>
-                <TableCell key={n.id}>{n.goalRank}</TableCell>
-                <TableCell key={n.id}>{n.goalName}</TableCell>
-                <TableCell key={n.id}>{n.goalLike}</TableCell>
-                <TableCell key={n.id}><button name={n.goalLike} onClick={this.incrementMe}>Like {this.newCount}</button></TableCell>
+                <TableCell key={n.id} align="center">{n.goalRank}</TableCell>
+                <TableCell key={n.id} align="center">{n.goalName}</TableCell>
+                <TableCell key={n.id} align="center">{this.state.goalLike}</TableCell>
+                <TableCell key={n.id} align="center">
+                  <button name={n.goalLike} onClick={this.IncrementItem}>Like</button>
+               </TableCell>
+
               </TableRow>
+
             ))}
           </TableBody>
+
         </Table>
       </Paper>
     )
