@@ -42,8 +42,8 @@ const data = [
   tableComponent(1, 'Lose Weight', 10),
   tableComponent(2, 'Get a Job', 8),
   tableComponent(3, 'Visit Korea', 6),
-  tableComponent(4, 'Win life', 4),
-  tableComponent(5, 'Quit Job', 2),
+  tableComponent(4, 'Find a Wife', 4),
+  tableComponent(5, 'Quit Smoking', 2),
 ];
 
 class GoalTable extends React.Component {
