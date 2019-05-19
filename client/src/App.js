@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Form from '../src/components/Form/index.js';
 import { UID } from 'react-uid';
 
+
 const styles = {
   root: {
     width: '100%',
@@ -31,10 +32,16 @@ function tableComponent(goalRank, goalName, goalLike, likeBtn) {
 
 const data = [
   tableComponent(1, 'Lose Weight', 0),
-  tableComponent(2, 'Get a Job', 0),
+  tableComponent(2, 'Gain Weight', 0),
   tableComponent(3, 'Visit Korea', 0),
   tableComponent(4, 'Win life', 0),
   tableComponent(5, 'Quit Job', 0),
+  tableComponent(6, 'Find a job', 0),
+  tableComponent(7, 'Travel', 0),
+  tableComponent(8, 'Learn Data Structures', 0),
+  tableComponent(9, 'Become rich', 0),
+  tableComponent(10, 'Invest in stocks', 0),
+
 ];
 
 class GoalTable extends React.Component {
