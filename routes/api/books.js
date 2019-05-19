@@ -13,4 +13,7 @@ router
   .put(booksController.update)
   .delete(booksController.remove);
 
+router.route("/likes")
+.post((req, res) => {console.log("req")}) 
+
 module.exports = router;
