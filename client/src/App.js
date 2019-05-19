@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,7 +8,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Form from '../src/components/Form/index.js';
-import { UID } from 'react-uid';
+import Card from '@material-ui/core/Card';
+// import CardPrimaryContent from '@material-ui/core/CardPrimaryContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import axios from 'axios';
+
+// import { UID } from 'react-uid';
+// import TableSortLabel from '@material-ui/core/TableSortLabel';
+
+
 
 const styles = {
   root: {
@@ -19,10 +27,6 @@ const styles = {
     minWidth: 700,
   },
 };
-
-
-
-
 
 // Goal Rank Table component
 function tableComponent(goalRank, goalName, goalLike, likeBtn) {
@@ -56,9 +60,17 @@ class GoalTable extends React.Component {
         ...item,
         goalLike: item.goalLike + 1
       }
-    }); 
+    });
     this.setState({ data });
     console.log(data)
+    
+    axios.post("/api/likes",this.state.data)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
   ToggleClick = () => {
     this.setState({ show: !this.state.show });
@@ -77,19 +89,34 @@ class GoalTable extends React.Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <Paper>
         <Form />
-        <UID>
-          {id => (
-            <Fragment>
-              <input id={id} />
-              <label htmlFor={id} />
-            </Fragment>
-          )}
 
-        </UID>
-        <Table>
+
+        <div>
+
+          {this.state.data.sort((a, b) => b.goalLike - a.goalLike).map((n, index) => {
+            n.goalRank = index + 1;
+            return (
+              <Card>
+                <p>
+                  Rank: {n.goalRank}
+                </p>
+                <p>
+                  Goal: {n.goalName}
+                </p>
+                <p>
+                  Like: {n.goalLike}
+                </p>
+                <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
+              </Card>)
+          })}
+        </div>
+
+        {/* Table Version */}
+        {/* <Table>
           <TableHead>
             <TableRow>
               <TableCell align="center">Rank</TableCell>
@@ -105,14 +132,14 @@ class GoalTable extends React.Component {
                 <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
                 <TableCell key={n.id} align="center">
                   <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
-               </TableCell>
+                </TableCell>
 
               </TableRow>
 
             ))}
           </TableBody>
 
-        </Table>
+        </Table> */}
       </Paper>
     )
   }
