@@ -110,13 +110,7 @@ class GoalTable extends React.Component {
     return (
       <Paper>
         <Form />
-        <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=tyler|?#project1"
-        width="100%"
-        height="450px"
-        id="myId"
-        className="myClassname"
-        display="initial"
-        position="relative"/>
+        
         <div>
               <Table>
               <TableHead>
@@ -142,7 +136,13 @@ class GoalTable extends React.Component {
               </TableBody>
               </Table> 
         </div>
-        
+        <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=tyler|?#project1"
+        width="100%"
+        height="450px"
+        id="myId"
+        className="myClassname"
+        display="initial"
+        position="relative"/>
       </Paper>
     )
   }
