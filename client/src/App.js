@@ -68,6 +68,7 @@ class GoalTable extends React.Component {
         goalLike: item.goalLike + 1
       }
     });
+    data.sort((a, b) => b.goalLike - a.goalLike);
     this.setState({ data });
     console.log(data)
     
@@ -103,56 +104,36 @@ class GoalTable extends React.Component {
 
 
         <div>
-
-          {this.state.data.sort((a, b) => b.goalLike - a.goalLike).map((n, index) => {
-            n.goalRank = index + 1;
-            return (
-              <Card>
-                <p>
-                  Rank: {n.goalRank}
-                </p>
-                <p>
-                  Goal: {n.goalName}
-                </p>
-                <p>
-                  Like: {n.goalLike}
-                </p>
-                <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
-              </Card>)
-          })}
+              <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Rank</TableCell>
+                  <TableCell align="center">Goal</TableCell>
+                  <TableCell align="center">Likes</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.state.data.map((n, index) => {
+                const goalRank = index + 1;
+                return (
+                  <TableRow key={n.goalName}>
+                    <TableCell key={n.id} align="center">{goalRank}</TableCell>
+                    <TableCell key={n.id} align="center">{n.goalName}</TableCell>
+                    <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
+                    <TableCell key={n.id} align="center">
+                      <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
+                    </TableCell>
+                 </TableRow>
+                )})}
+              </TableBody>
+              </Table> 
         </div>
-
-        {/* { Table Version } */}
-        { <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Rank</TableCell>
-              <TableCell align="center">Goal</TableCell>
-              <TableCell align="center">Likes</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.data.map((n, index) => (
-              <TableRow key={n.goalName}>
-                <TableCell key={n.id} align="center">{n.goalRank}</TableCell>
-                <TableCell key={n.id} align="center">{n.goalName}</TableCell>
-                <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
-                <TableCell key={n.id} align="center">
-                  <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
-                </TableCell>
-
-              </TableRow>
-
-            ))}
-          </TableBody>
-
-        </Table> }
       </Paper>
     )
   }
 }
 
-
+  
 
 GoalTable.propTypes = {
   classes: PropTypes.object.isRequired,
