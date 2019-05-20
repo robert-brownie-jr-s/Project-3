@@ -35,6 +35,8 @@ function tableComponent(goalRank, goalName, goalLike, likeBtn) {
 }
 
 const data = [
+
+  
   tableComponent(1, 'Lose Weight', 0),
   tableComponent(2, 'Gain Weight', 0),
   tableComponent(3, 'Visit Korea', 0),
@@ -45,6 +47,7 @@ const data = [
   tableComponent(8, 'Learn Data Structures', 0),
   tableComponent(9, 'Become rich', 0),
   tableComponent(10, 'Invest in stocks', 0),
+
 
 ];
 
