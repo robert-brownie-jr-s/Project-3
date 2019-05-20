@@ -12,11 +12,12 @@ import Card from '@material-ui/core/Card';
 // import CardPrimaryContent from '@material-ui/core/CardPrimaryContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import axios from 'axios';
+import Iframe from 'react-iframe'
+// import Navbar from '../src/components/Nav/index.js'
+// import "@material/card/mdc-card";
 
 // import { UID } from 'react-uid';
 // import TableSortLabel from '@material-ui/core/TableSortLabel';
-
-
 
 
 const styles = {
@@ -28,6 +29,9 @@ const styles = {
     minWidth: 700,
   },
 };
+
+
+
 
 // Goal Rank Table component
 function tableComponent(goalRank, goalName, goalLike, likeBtn) {
@@ -74,7 +78,7 @@ class GoalTable extends React.Component {
     data.sort((a, b) => b.goalLike - a.goalLike);
     this.setState({ data });
     console.log(data)
-    
+
     axios.post("/api/likes",this.state.data)
     .then(function (response) {
       console.log(response);
@@ -97,15 +101,22 @@ class GoalTable extends React.Component {
   //send to DB (mySQL)
   //response back to front end
   //------------------------------
-
+      
+        
+        
 
   render() {
     console.log(this.state)
     return (
       <Paper>
         <Form />
-
-
+        <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=tyler|?#project1"
+        width="100%"
+        height="450px"
+        id="myId"
+        className="myClassname"
+        display="initial"
+        position="relative"/>
         <div>
               <Table>
               <TableHead>
@@ -121,7 +132,7 @@ class GoalTable extends React.Component {
                 return (
                   <TableRow key={n.goalName}>
                     <TableCell key={n.id} align="center">{goalRank}</TableCell>
-                    <TableCell key={n.id} align="center">{n.goalName}</TableCell>
+                    <TableCell key={n.id} align="center"><a href = "/search">{n.goalName}</a></TableCell>
                     <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
                     <TableCell key={n.id} align="center">
                       <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
@@ -131,15 +142,17 @@ class GoalTable extends React.Component {
               </TableBody>
               </Table> 
         </div>
+        
       </Paper>
     )
   }
 }
 
-  
+
 
 GoalTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(GoalTable);
+
