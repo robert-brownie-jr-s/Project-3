@@ -12,6 +12,7 @@ import Card from '@material-ui/core/Card';
 // import CardPrimaryContent from '@material-ui/core/CardPrimaryContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import axios from 'axios';
+import "@material/card/mdc-card";
 
 // import { UID } from 'react-uid';
 // import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -63,7 +64,7 @@ class GoalTable extends React.Component {
     });
     this.setState({ data });
     console.log(data)
-    
+
     axios.post("/api/likes",this.state.data)
     .then(function (response) {
       console.log(response);
@@ -94,7 +95,6 @@ class GoalTable extends React.Component {
       <Paper>
         <Form />
 
-
         <div>
 
           {this.state.data.sort((a, b) => b.goalLike - a.goalLike).map((n, index) => {
@@ -111,7 +111,8 @@ class GoalTable extends React.Component {
                   Like: {n.goalLike}
                 </p>
                 <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
-              </Card>)
+              </Card>
+              )
           })}
         </div>
 
