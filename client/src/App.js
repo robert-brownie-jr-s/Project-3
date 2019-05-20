@@ -122,8 +122,8 @@ class GoalTable extends React.Component {
           })}
         </div>
 
-        {/* Table Version */}
-        {/* <Table>
+        {/* { Table Version } */}
+        { <Table>
           <TableHead>
             <TableRow>
               <TableCell align="center">Rank</TableCell>
@@ -146,11 +146,12 @@ class GoalTable extends React.Component {
             ))}
           </TableBody>
 
-        </Table> */}
+        </Table> }
       </Paper>
     )
   }
 }
+
 
 
 GoalTable.propTypes = {
