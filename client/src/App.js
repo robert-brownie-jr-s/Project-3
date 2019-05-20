@@ -12,7 +12,7 @@ import Card from '@material-ui/core/Card';
 // import CardPrimaryContent from '@material-ui/core/CardPrimaryContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import axios from 'axios';
-import "@material/card/mdc-card";
+// import "@material/card/mdc-card";
 
 // import { UID } from 'react-uid';
 // import TableSortLabel from '@material-ui/core/TableSortLabel';
