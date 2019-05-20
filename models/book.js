@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const bookSchema = new Schema({
-  title: { type: String, required: true },
-  author: { type: String, required: true },
-  synopsis: String,
-  date: { type: Date, default: Date.now }
+const goalSchema = new Schema({
+  rank: { type: String, required: true },
+  goal: { type: String, required: true },
+  likes: { type: Number, required: true },
 });
 
-const Book = mongoose.model("Book", bookSchema);
+const Goal = mongoose.model("Goal", goalSchema);
 
-module.exports = Book;
+module.exports = Goal;
