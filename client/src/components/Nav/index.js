@@ -1,5 +1,7 @@
 import React from "react";
-
+import NavDropdown from '../src/components/Nav/index.js';
+import Navbar from '../src/components/Nav/index.js';
+import Nav from '../src/components/Nav/index.js';
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -7,10 +9,8 @@ function Nav() {
         React Reading List
       </a>
     </nav>
-  );
-}
 
-<Navbar bg="light" expand="lg">
+<Navbar bg="dark" variant="dark">
   <Navbar.Brand href="#home">2019 Goals</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
