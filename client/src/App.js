@@ -12,18 +12,15 @@ import Card from '@material-ui/core/Card';
 // import CardPrimaryContent from '@material-ui/core/CardPrimaryContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import axios from 'axios';
-<<<<<<< HEAD
-import Navbar from '../src/components/Nav/index.js';
-// import { UID } from 'react-uid';
-// import TableSortLabel from '@material-ui/core/TableSortLabel';
-=======
 import Iframe from 'react-iframe'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import GoalSearch from './components/Search/search.js'
+// jumbotron
+import React from 'react';
+import { Jumbotron, Button } from 'reactstrap';
 
 // import Navbar from '../src/components/Nav/index.js'
 // import "@material/card/mdc-card";
->>>>>>> origin/master
 
 
 // import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -38,7 +35,25 @@ const styles = {
     minWidth: 700,
   },
 };
+// jumbotron
 
+const Example = (props) => {
+  return (
+    <div>
+      <Jumbotron>
+        <h1 className="display-3">Come Achieve Your Goals Bitches!</h1>
+        <p className="lead">This site is dedicated to ensuring your goals are met, linking you with others progressing toward the same goal!</p>
+        <hr className="my-2" />
+        <p>Make Sure You Track Your Goals!</p>
+        <p className="lead">
+          <Button color="primary">Get After It!</Button>
+        </p>
+      </Jumbotron>
+    </div>
+  );
+};
+
+export default Example;
 
 
 
