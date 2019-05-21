@@ -85,7 +85,8 @@ class GoalTable extends React.Component {
     this.state = {
       data,
       show: true,
-      view: "app"
+      view: "app",
+      passData: [],
 
     }
   }
@@ -134,13 +135,13 @@ class GoalTable extends React.Component {
     var state = this.state.view
     console.log(this.state)
 
+
     {
       if (this.state.view === "app") {
         return (
-          <Router >
+          <Router>
             <Paper>
               <Form />
-
               <div>
                 <Table>
                   <TableHead>
@@ -152,11 +153,13 @@ class GoalTable extends React.Component {
                   </TableHead>
                   <TableBody>
                     {this.state.data.map((n, index) => {
+
                       const goalRank = index + 1;
                       return (
+
                         <TableRow key={n.goalName}>
                           <TableCell key={n.id} align="center">{goalRank}</TableCell>
-                          <TableCell key={n.id} align="center"><a onClick={()=>this.setState({view: "search"})}>{n.goalName}</a></TableCell>
+                          <TableCell key={n.id} align="center"><a onClick={() => this.setState({ passData: n.goalName, view: "search" })}>{n.goalName}</a></TableCell>
                           <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
                           <TableCell key={n.id} align="center">
                             <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
@@ -174,21 +177,29 @@ class GoalTable extends React.Component {
                 className="myClassname"
                 display="initial"
                 position="relative" />
+            
             </Paper>
+            
 
 
           </Router >
+          
         )
+
       } else {
 
         return (
-          
-          <GoalSearch/>
-          
-          )
-        
-        
-        
+
+
+
+          <GoalSearch
+            passData={this.state.passData}
+          />
+
+        )
+
+
+
       }
 
 
