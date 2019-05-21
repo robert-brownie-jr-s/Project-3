@@ -16,7 +16,7 @@ import Iframe from 'react-iframe'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import GoalSearch from './components/Search/search.js'
 // jumbotron
-import React from 'react';
+
 import { Jumbotron, Button } from 'reactstrap';
 
 // import Navbar from '../src/components/Nav/index.js'
@@ -53,7 +53,7 @@ const Example = (props) => {
   );
 };
 
-export default Example;
+
 
 
 
