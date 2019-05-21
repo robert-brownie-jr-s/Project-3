@@ -9,8 +9,14 @@ function Nav() {
         React Reading List
       </a>
     </nav>
+<<<<<<< HEAD
 
 <Navbar bg="dark" variant="dark">
+=======
+  )
+  }
+<Navbar bg="light" expand="lg">
+>>>>>>> origin/master
   <Navbar.Brand href="#home">2019 Goals</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
@@ -28,8 +34,10 @@ function Nav() {
       <Button variant="outline-success">Search</Button>
     </Form>
   </Navbar.Collapse>
-</Navbar>;
+</Navbar>
 
-export default withStyles(styles)(navBar);
 
-export default Nav;
+export default withStyles(styles)(Navbar);
+
+
+// export default Nav;
