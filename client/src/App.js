@@ -13,12 +13,12 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia'
 import axios from 'axios';
 import Iframe from 'react-iframe'
-
+import GoalSearch from './components/Search/search.js'
 
 // import Navbar from '../src/components/Nav/index.js'
 // import "@material/card/mdc-card";
 
-// import { UID } from 'react-uid';
+
 // import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 
@@ -42,7 +42,7 @@ function tableComponent(goalRank, goalName, goalLike, likeBtn) {
 
 const data = [
 
-  
+
   tableComponent(1, 'Lose Weight', 0),
   tableComponent(2, 'Gain Weight', 0),
   tableComponent(3, 'Visit Korea', 0),
@@ -62,7 +62,8 @@ class GoalTable extends React.Component {
     super(props)
     this.state = {
       data,
-      show: true
+      show: true,
+      view: "app"
 
     }
   }
@@ -81,13 +82,13 @@ class GoalTable extends React.Component {
     this.setState({ data });
     console.log(data)
 
-    axios.post("/api/likes",this.state.data)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios.post("/api/likes", this.state.data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   ToggleClick = () => {
     this.setState({ show: !this.state.show });
@@ -103,11 +104,12 @@ class GoalTable extends React.Component {
   //send to DB (mySQL)
   //response back to front end
   //------------------------------
-      
-        
-        
+
+
+
 
   render() {
+    var state = this.state.view
     console.log(this.state)
     return (
       <Paper>
@@ -144,11 +146,10 @@ class GoalTable extends React.Component {
               </TableBody>
               </Table> 
         </div>
-        
-      </Paper>
-    )
-  }
-}
+        </Paper>
+              
+    )}
+    }
 
 
 
