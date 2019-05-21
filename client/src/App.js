@@ -13,6 +13,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia'
 import axios from 'axios';
 import Iframe from 'react-iframe'
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import GoalSearch from './components/Search/search.js'
 // jumbotron
 import { Jumbotron, Button } from 'reactstrap';
@@ -83,10 +84,12 @@ class GoalTable extends React.Component {
     this.state = {
       data,
       show: true,
-      view: "app"
+      view: "app",
+      passData: [],
 
     }
   }
+
 
   IncrementItem = index => () => {
     const data = this.state.data.map((item, i) => {
@@ -131,51 +134,86 @@ class GoalTable extends React.Component {
   render() {
     var state = this.state.view
     console.log(this.state)
-    return (
-      <Paper>
-        <Form />
-        <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick="
-        width="100%"
-        height="450px"
-        id="myId"
-        className="myClassname"
-        display="initial"
-        position="relative"/>
-        <div>
-              <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Rank</TableCell>
-                  <TableCell align="center">Goal</TableCell>
-                  <TableCell align="center">Likes</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {this.state.data.map((n, index) => {
-                const goalRank = index + 1;
-                return (
-                  <TableRow key={n.goalName}>
-                    <TableCell key={n.id} align="center">{goalRank}</TableCell>
-                    <TableCell key={n.id} align="center"><a href = "/search">{n.goalName}</a></TableCell>
-                    <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
-                    <TableCell key={n.id} align="center">
-                      <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
-                    </TableCell>
-                 </TableRow>
-                )})}
-              </TableBody>
-              </Table> 
-        </div>
-        </Paper>
-              
-    )}
+
+
+    {
+      if (this.state.view === "app") {
+        return (
+          <Router>
+            <Paper>
+              <Form />
+              <div>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">Rank</TableCell>
+                      <TableCell align="center">Goal</TableCell>
+                      <TableCell align="center">Likes</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {this.state.data.map((n, index) => {
+
+                      const goalRank = index + 1;
+                      return (
+
+                        <TableRow key={n.goalName}>
+                          <TableCell key={n.id} align="center">{goalRank}</TableCell>
+                          <TableCell key={n.id} align="center"><a onClick={() => this.setState({ passData: n.goalName, view: "search" })}>{n.goalName}</a></TableCell>
+                          <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
+                          <TableCell key={n.id} align="center">
+                            <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+              <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=tyler|?#project1"
+                width="100%"
+                height="450px"
+                id="myId"
+                className="myClassname"
+                display="initial"
+                position="relative" />
+            
+            </Paper>
+            
+
+
+          </Router >
+          
+        )
+
+      } else {
+
+        return (
+
+
+
+          <GoalSearch
+            passData={this.state.passData}
+          />
+
+        )
+
+
+
+      }
+    
+
+
     }
 
+  
 
 
+
+  }
+}
 GoalTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
+  
 export default withStyles(styles)(GoalTable);
-

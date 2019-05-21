@@ -2,21 +2,20 @@
 import ReactDOM from "react-dom";
 import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+
 
 
 
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {Launcher} from '../../src'
-import messageHistory from './messageHistory';
-import TestArea from './TestArea';
-import Header from './Header';
-import Footer from './Footer';
+// import messageHistory from './messageHistory';
+import TestArea from './testArea.js';
+import Header from './header.js';
+import Footer from './footer.js';
 import monsterImgUrl from "./../assets/monster.png";
-import Highlight from "react-highlight.js";
 import './../assets/styles'
-
+ReactDOM.render(<App />, document.getElementById("root"));
 
 
 class Demo extends Component {
@@ -24,7 +23,7 @@ class Demo extends Component {
   constructor() {
     super();
     this.state = {
-      messageList: messageHistory,
+      // messageList: messageHistory,
       newMessagesCount: 0,
       isOpen: false
     };
