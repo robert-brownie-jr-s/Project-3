@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const goalSchema = new Schema({
-  rank: { type: String, required: true },
+  rank: { type: Number, required: true },
   goal: { type: String, required: true },
   likes: { type: Number, required: true },
 });
