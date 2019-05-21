@@ -30,9 +30,16 @@ class GoalSearch extends React.Component {
 
             <div>
                 <h1>Here are some search results to help achieving your goal, {this.props.passData}.</h1>
-
+                <Iframe src={`https://www.youtube.com/embed/?listType=search&list=${this.props.passData}`}
+                    
+                    width="100%"
+                    height="450px"
+                    id="myId"
+                    className="myClassname"
+                    display="initial"
+                    position="relative" />
             </div>
-            
+
 
         )
     }
