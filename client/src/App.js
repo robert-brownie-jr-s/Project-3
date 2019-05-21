@@ -112,7 +112,7 @@ class GoalTable extends React.Component {
     return (
       <Paper>
         <Form />
-        <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=tyler|?#project1"
+        <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick="
         width="100%"
         height="450px"
         id="myId"
