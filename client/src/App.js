@@ -75,6 +75,7 @@ class GoalTable extends React.Component {
 
   componentDidMount() {
     this.loadGoals();
+    
   }
 
   loadGoals = () => {
@@ -87,31 +88,32 @@ class GoalTable extends React.Component {
       }
       )
       .catch(err => console.log(err));
-  };
+  }
+
+  IncrementItem = (index, id) => () => {
 
 
 
-  IncrementItem = index => () => {
-    const data = this.state.data.map((item, i) => {
-      if (i !== index) {
-        return item;
-      }
-      return {
-        ...item,
-        likes: item.likes + 1
-      }
-    });
-    data.sort((a, b) => b.likes - a.likes);
-    this.setState({ data });
-    console.log(data)
-
-    axios.post("/api/likes", this.state.data)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    API.likeGoal(id)
+    .then(res => {
+      this.loadGoals();
+      // console.log(res.data)
+      // const data = this.state.data.map((item, i) => {
+      //   if (i !== index) {
+      //     return item;
+      //   }
+      //   return {
+      //     ...item,
+      //     likes: res.data.likes
+      //   }
+      // });
+      // data.sort((a, b) => b.likes - a.likes);
+      // this.setState({ data });
+      // console.log(data)
+      // const data = res.data;
+      // data.sort((a, b) => b.likes - a.likes);
+      // this.setState({ data })
+    })
   }
   ToggleClick = () => {
     this.setState({ show: !this.state.show });
@@ -155,12 +157,21 @@ class GoalTable extends React.Component {
                       const goalRank = index + 1;
                       return (
 
+<<<<<<< HEAD
                         <TableRow key={n.goal}>
                           <TableCell key={n.id} align="center">{goalRank}</TableCell>
                           <TableCell key={n.id} align="center" ><a style={{cursor:'pointer'}} onClick={() => this.setState({ passData: n.goal, view: "search" })} >{n.goal}</a></TableCell>
                           <TableCell key={n.id} align="center">{n.likes}</TableCell>
                           <TableCell key={n.id} align="center">
                             <button name={n.likes} onClick={this.IncrementItem(index)}>Like</button>
+=======
+                        <TableRow key={n._id}>
+                          <TableCell  align="center">{goalRank}</TableCell>
+                          <TableCell  align="center"><a onClick={() => this.setState({ passData: n.goal, view: "search" })}>{n.goal}</a></TableCell>
+                          <TableCell align="center">{n.likes}</TableCell>
+                          <TableCell align="center">
+                            <button name={n.likes} onClick={this.IncrementItem(index, n._id)}>Like</button>
+>>>>>>> origin/master
                           </TableCell>
                         </TableRow>
                       )

@@ -14,17 +14,17 @@ class Goals extends Component {
     goals: []
   };
 
-  componentDidMount() {
-    this.loadGoals();
-  }
+  // componentDidMount() {
+  //   this.loadGoals();
+  // }
 
-  loadGoals = () => {
-    API.getGoals()
-      .then(res =>
-        this.setState({ goals: res.data })
-      )
-      .catch(err => console.log(err));
-  };
+  // loadGoals = () => {
+  //   API.getGoals()
+  //     .then(res =>
+  //       this.setState({ goals: res.data })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
 
 
   
