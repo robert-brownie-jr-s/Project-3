@@ -172,7 +172,7 @@ class GoalTable extends React.Component {
                   </TableBody>
                 </Table>
               </div>
-              <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick="
+              <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com#over_achiever"
                 width="100%"
                 height="450px"
                 id="myId"
