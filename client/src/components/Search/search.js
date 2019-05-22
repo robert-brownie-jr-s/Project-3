@@ -31,13 +31,29 @@ class GoalSearch extends React.Component {
             <div>
                 <h1>Here are some search results to help achieving your goal, {this.props.passData}.</h1>
                 <Iframe src={`https://www.youtube.com/embed/?listType=search&list=${this.props.passData}`}
-                    
                     width="100%"
                     height="450px"
-                    id="myId"
+                    id="youtubeFrame"
                     className="myClassname"
                     display="initial"
                     position="relative" />
+
+                <Iframe src={`http://www.google.com/custom?q=&btnG=Search=${this.props.passData}`}
+                    width="100%"
+                    height="450px"
+                    id="googleFrame"
+                    className="myClassname"
+                    display="initial"
+                    position="relative" />
+                    
+                <Iframe src={`https://api.twitter.com/1.1/search/tweets.json?q=%23superbowl&result_type=recent`}
+                    width="100%"
+                    height="450px"
+                    id="instaFrame"
+                    className="myClassname"
+                    display="initial"
+                    position="relative" />
+
             </div>
 
 

@@ -157,12 +157,14 @@ class GoalTable extends React.Component {
                       const goalRank = index + 1;
                       return (
 
+
                         <TableRow key={n._id}>
                           <TableCell  align="center">{goalRank}</TableCell>
-                          <TableCell  align="center"><a onClick={() => this.setState({ passData: n.goal, view: "search" })}>{n.goal}</a></TableCell>
+                          <TableCell  align="center"><a style={{cursor:'pointer'}} onClick={() => this.setState({ passData: n.goal, view: "search" })}>{n.goal}</a></TableCell>
                           <TableCell align="center">{n.likes}</TableCell>
                           <TableCell align="center">
                             <button name={n.likes} onClick={this.IncrementItem(index, n._id)}>Like</button>
+
                           </TableCell>
                         </TableRow>
                       )
