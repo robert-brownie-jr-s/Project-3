@@ -9,5 +9,8 @@ export default {
   },
   saveGoal: function(goalData) {
     return axios.post("/api/goals", goalData);
-  }
+  },
+  likeGoal: function(id) {
+    return axios.put("/api/goals/" + id + "/like");
+  },
 };
