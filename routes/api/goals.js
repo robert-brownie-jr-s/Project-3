@@ -11,7 +11,11 @@ router
   .route("/:id")
   .get(goalsController.findById)
   .put(goalsController.update)
-  .delete(goalsController.remove);
+  //.delete(goalsController.remove);
+
+router
+  .route("/:id/like")
+  .put(goalsController.like)
 
 router.route("/likes")
 .post((req, res) => {console.log("req")}) 
