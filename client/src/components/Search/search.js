@@ -1,19 +1,26 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import App from '../../../../client/src/App.js'
 
 class GoalSearch extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+    
+        }
 
     }
-    handleSearch() {
+    handleSearch(props) {
         console.log("search")
+        
     }
+    
     render() {
         return(
+
             <div>
-                <h1>Hello World!!!</h1>
+                <h1>`Hello, this is {this.props.passData}`</h1>
+                
             </div>
         )
     }
