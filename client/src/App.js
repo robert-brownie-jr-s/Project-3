@@ -89,41 +89,31 @@ class GoalTable extends React.Component {
       )
       .catch(err => console.log(err));
   }
-  likeGoals = () => {
-    API.likeGoal()
-    .then(res => {
-      console.log(res.data)
-      const data = res.data;
-      data.sort((a, b) => b.likes - a.likes);
-      this.setState({ data })
-    })
-  }
-
-
 
   IncrementItem = (index, id) => () => {
 
 
-    const data = this.state.data.map((item, i) => {
-      if (i !== index) {
-        return item;
-      }
-      return {
-        ...item,
-        likes: item.likes + 1
-      }
-    });
-    data.sort((a, b) => b.likes - a.likes);
-    this.setState({ data });
-    console.log(data)
 
-    axios.post("/api/likes", this.state.data)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    API.likeGoal(id)
+    .then(res => {
+      this.loadGoals();
+      // console.log(res.data)
+      // const data = this.state.data.map((item, i) => {
+      //   if (i !== index) {
+      //     return item;
+      //   }
+      //   return {
+      //     ...item,
+      //     likes: res.data.likes
+      //   }
+      // });
+      // data.sort((a, b) => b.likes - a.likes);
+      // this.setState({ data });
+      // console.log(data)
+      // const data = res.data;
+      // data.sort((a, b) => b.likes - a.likes);
+      // this.setState({ data })
+    })
   }
   ToggleClick = () => {
     this.setState({ show: !this.state.show });
