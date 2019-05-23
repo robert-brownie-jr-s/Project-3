@@ -30,9 +30,11 @@
     "material-components-web": "^2.2.0",
     "mongoose": "^5.3.16",
     "react-iframe": "^1.8.0",
+    "react-pinterest": "^1.2.0",
     "react-router-dom": "^5.0.0",
     "react-uid": "^2.2.0",
     "reactstrap": "^8.0.0",
+    "twitter": "^1.7.1",
     "youtube-search": "^1.1.4"
   }
 }
