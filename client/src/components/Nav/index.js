@@ -9,14 +9,9 @@ function Nav() {
         React Reading List
       </a>
     </nav>
-<<<<<<< HEAD
-
-<Navbar bg="dark" variant="dark">
-=======
   )
   }
 <Navbar bg="light" expand="lg">
->>>>>>> origin/master
   <Navbar.Brand href="#home">2019 Goals</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">

@@ -1,0 +1,12 @@
+.form-group {
+    border: 3px BLACK solid;
+    border-radius: 4px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .form-group{
+      text-align: center;
+      text-decoration-color: blue;
+      font-family: Arial, Helvetica, sans-serif;
+  }
