@@ -13,21 +13,20 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia'
 import axios from 'axios';
 import Iframe from 'react-iframe'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import GoalSearch from './components/Search/search.js'
 
 
 
 // jumbotron
-
 import { Jumbotron, Button } from 'reactstrap';
+import API from "./utils/API";
 
 // import Navbar from '../src/components/Nav/index.js'
 // import "@material/card/mdc-card";
 
 
 // import TableSortLabel from '@material-ui/core/TableSortLabel';
-
 
 const styles = {
   root: {
@@ -58,66 +57,41 @@ const Example = (props) => {
 
 
 
-
-<div>
-    <strong>{this.getDone().length}</strong>
-    done,
-    <strong>{this.getPending().length}</strong>
-    pending
-    <br/>
-    <div rt-repeat="todo in this.state.todos" key="{todo.key}">
-        <img src="img/samples/delete.png"
-             onClick="()=>this.remove(todo)"
-             title="Remove Todo"
-             style="cursor:pointer"/>
-        <input type="checkbox" checked="{todo.done}"
-               onChange="()=>this.toggleChecked(todoIndex)"/>
-        <span style="text-decoration: {todo.done ? 'line-through': 'none'}">{todo.value}</span>
-    </div>
-    <input key="myinput" style="width:130px" type="text"
-           onKeyDown="(e) => if (e.keyCode == 13) { e.preventDefault(); this.add(); }"
-           valueLink="{this.linkState('edited')}"/>
-    <button onClick="()=>this.add()">Add Small Goal</button><br/>
-    <button onClick="()=>this.clearDone()">Clear Goal</button>
-</div>
-
-
-
-
-
 // Goal Rank Table component
 function tableComponent(goalRank, goalName, goalLike, likeBtn) {
   return { goalRank, goalName, goalLike, likeBtn };
 }
 
-const data = [
-
-
-  tableComponent(1, 'Lose Weight', 0),
-  tableComponent(2, 'Gain Weight', 0),
-  tableComponent(3, 'Visit Korea', 0),
-  tableComponent(4, 'Win life', 0),
-  tableComponent(5, 'Quit Job', 0),
-  tableComponent(6, 'Find a job', 0),
-  tableComponent(7, 'Travel', 0),
-  tableComponent(8, 'Learn Data Structures', 0),
-  tableComponent(9, 'Become rich', 0),
-  tableComponent(10, 'Invest in stocks', 0),
-
-
-];
-
 class GoalTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data,
+      data: [],
       show: true,
       view: "app",
       passData: [],
 
     }
   }
+
+
+  componentDidMount() {
+    this.loadGoals();
+  }
+
+  loadGoals = () => {
+    API.getGoals()
+      .then(res => {
+        console.log(res.data)
+        const data = res.data;
+        data.sort((a, b) => b.likes - a.likes);
+        this.setState({ data })
+      }
+      )
+      .catch(err => console.log(err));
+  };
+
+
 
   IncrementItem = index => () => {
     const data = this.state.data.map((item, i) => {
@@ -126,10 +100,10 @@ class GoalTable extends React.Component {
       }
       return {
         ...item,
-        goalLike: item.goalLike + 1
+        likes: item.likes + 1
       }
     });
-    data.sort((a, b) => b.goalLike - a.goalLike);
+    data.sort((a, b) => b.likes - a.likes);
     this.setState({ data });
     console.log(data)
 
@@ -160,11 +134,9 @@ class GoalTable extends React.Component {
 
 
   render() {
-    var state = this.state.view
     console.log(this.state)
 
 
-    {
       if (this.state.view === "app") {
         return (
           <Router>
@@ -185,12 +157,12 @@ class GoalTable extends React.Component {
                       const goalRank = index + 1;
                       return (
 
-                        <TableRow key={n.goalName}>
+                        <TableRow key={n.goal}>
                           <TableCell key={n.id} align="center">{goalRank}</TableCell>
-                          <TableCell key={n.id} align="center"><a onClick={() => this.setState({ passData: n.goalName, view: "search" })}>{n.goalName}</a></TableCell>
-                          <TableCell key={n.id} align="center">{n.goalLike}</TableCell>
+                          <TableCell key={n.id} align="center"><a onClick={() => this.setState({ passData: n.goal, view: "search" })}>{n.goal}</a></TableCell>
+                          <TableCell key={n.id} align="center">{n.likes}</TableCell>
                           <TableCell key={n.id} align="center">
-                            <button name={n.goalLike} onClick={this.IncrementItem(index)}>Like</button>
+                            <button name={n.likes} onClick={this.IncrementItem(index)}>Like</button>
                           </TableCell>
                         </TableRow>
                       )
@@ -198,7 +170,7 @@ class GoalTable extends React.Component {
                   </TableBody>
                 </Table>
               </div>
-              <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick=tyler|?#project1"
+              <Iframe url="https://kiwiirc.com/client/irc.kiwiirc.com/?nick="
                 width="100%"
                 height="450px"
                 id="myId"
@@ -229,21 +201,18 @@ class GoalTable extends React.Component {
 
 
       }
+    
 
 
 
-    }
+  
 
 
 
   }
 }
-
-
-
 GoalTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
+  
 export default withStyles(styles)(GoalTable);
-
