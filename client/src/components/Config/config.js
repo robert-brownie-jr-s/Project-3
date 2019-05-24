@@ -1,8 +1,8 @@
 module.exports = {
-    consumer_key: 'sgbYZpPhKo6tjBa4bSTpJ7XYM',
-    consumer_secret: 'TgRqtxuTOHDk6bSNVCIuB3j9h5LO5NK6HGTNCW0MiK2jiZVmJ0',
-    access_token_key: '233737072-kRUIRbZO2LFwuQEL9gvlHRWwwmxodEErMTLnv2A9',
-    access_token_secret: 'zRjLuymyqt6pVtxTEZqzhCUduIbecBXkgbi5bYlXVuTln',
+    consumer_key: 'API_KEY',
+    consumer_secret: 'API_KEY',
+    access_token_key: 'API_KEY',
+    access_token_secret: 'API_KEY',
     web: {
         cors: true,
       },
