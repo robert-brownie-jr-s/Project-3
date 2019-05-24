@@ -24,15 +24,18 @@
     "@material-ui/styles": "^3.0.0-alpha.10",
     "@material/card": "^2.1.1",
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "express": "^4.16.3",
     "fragment": "^0.3.0",
     "if-env": "^1.0.4",
     "material-components-web": "^2.2.0",
     "mongoose": "^5.3.16",
     "react-iframe": "^1.8.0",
+    "react-pinterest": "^1.2.0",
     "react-router-dom": "^5.0.0",
     "react-uid": "^2.2.0",
     "reactstrap": "^8.0.0",
+    "twitter": "^1.7.1",
     "youtube-search": "^1.1.4"
   }
 }
